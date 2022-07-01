@@ -11,8 +11,8 @@ import java.util.List;
 @Table(name = "Marks")
 public class Mark {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Id()
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long uid;
 
     @Column(name = "NAME")
@@ -73,13 +73,6 @@ public class Mark {
         this.caption = caption;
     }
 
-    public List<ModelAuto> getModels() {
-        return modelAutoList;
-    }
-
-    public void setModels(List<ModelAuto> modelAutos) {
-        this.modelAutoList = modelAutos;
-    }
 
 
 

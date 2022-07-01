@@ -39,13 +39,13 @@ public class MarkController {
     //Выводит модели определенной марки
     @GetMapping("mark/{id}/model")
     public List<ModelAuto> getAllModels(@PathVariable Long id) {
-        return markService.getMarkId(id).getModels();
+        return markService.getMarkId(id).getModelAutoList();
     }
 
     //Поиск по айди модели определенной марки
     @GetMapping("mark/{markId}/model/{modelId}")
     public ModelAuto getModelId(@PathVariable Long markId, @PathVariable Long modelId) {
-        for (ModelAuto modelAuto : markService.getMarkId(markId).getModels()) {
+        for (ModelAuto modelAuto : markService.getMarkId(markId).getModelAutoList()) {
             if (modelAuto.getUid() == modelId) {
                 return modelAuto;
             }
@@ -56,7 +56,7 @@ public class MarkController {
     //Выводит модификации моделей
     @GetMapping("mark/{markId}/model/{modelId}/modification")
     public List<Modification> getAllModifications(@PathVariable long markId, @PathVariable long modelId) {
-            for (ModelAuto model : markService.getMarkId(markId).getModels()) {
+            for (ModelAuto model : markService.getMarkId(markId).getModelAutoList()) {
                 if (model.getUid() == modelId) {
                     return model.getModificationList();
                 }
@@ -67,7 +67,7 @@ public class MarkController {
     @GetMapping("mark/{markId}/model/{modelId}/modification/{modificationId}")
     public Modification getModificationById(@PathVariable long markId, @PathVariable long modelId, @PathVariable long modificationId) {
 
-            for (ModelAuto model : markService.getMarkId(markId).getModels()) {
+            for (ModelAuto model : markService.getMarkId(markId).getModelAutoList()) {
                 if (model.getUid() == modelId) {
                     for (Modification modification : model.getModificationList()) {
                         if (modification.getUid() == modificationId) {
@@ -89,7 +89,7 @@ public class MarkController {
     //Добавить модель для марки
     @PostMapping("/mark/{id}/model")
     public ModelAuto saveModel(@PathVariable long id, @RequestBody ModelAuto model) {
-            markService.getMarkId(id).getModels().add(model);
+            markService.getMarkId(id).getModelAutoList().add(model);
             model.setMark(markService.getMarkId(id));
             modelService.saveOrUpdateModel(model);
             return model;

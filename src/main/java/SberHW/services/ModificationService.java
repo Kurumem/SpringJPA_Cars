@@ -30,7 +30,7 @@ public class ModificationService {
     }
 
 
-    public List<Modification> getNameEndBegin(String name, int periodBegin, int periodEnd) {
+    public List<Modification> getNameBeginEnd(String name, int periodBegin, int periodEnd) {
         return new ArrayList<>(modificationRepository.findByNameIgnoreCaseAndPeriodBeginAndPeriodEnd(name, periodBegin, periodEnd));
     }
 
